@@ -1,0 +1,28 @@
+.background{
+    background-color:grey;
+}
+
+.middlePicture{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.middleText{
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.textContainer{
+    display:flex;
+    align-items: center;
+}
+
+.displayflex{
+    display:flex;
+}
+
+.fontSize{
+    font-size: 3vh;
+}

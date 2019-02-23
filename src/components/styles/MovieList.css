@@ -3,3 +3,8 @@
     flex-wrap: wrap;
     justify-content: center;
 }
+
+.margin{
+    margin-right:5vw;
+    margin-left:5vw;
+}
