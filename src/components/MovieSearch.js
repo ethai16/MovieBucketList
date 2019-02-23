@@ -51,7 +51,7 @@ class MovieSearch extends React.Component {
             genreLink = `&with_genres=${this.state.genre}`
         }
 
-        var url = `/movie/page=1${genreLink + yearLink}`
+        var url = `/movies/page=1${genreLink + yearLink}`
         var withoutPage = genreLink + yearLink
         window.location.href = url
         this.props.getLink(withoutPage)
@@ -63,7 +63,7 @@ class MovieSearch extends React.Component {
                 <form autoComplete = "off">
                     <MovieSearchYear updateYear = {(yearInput)=> this.updateYear(yearInput)} searched ={this.state.year}/>
                     <MovieSearchGenre updateGenre = {(genreInput)=>this.updateGenre(genreInput)}searched ={this.state.genre}/>
-                    <Button onClick = {()=>this.search()}>Search</Button>
+                    <Button onClick = {()=>this.search()}>Sort</Button>
                 </form>
             </div>
         );

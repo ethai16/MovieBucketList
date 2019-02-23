@@ -34,3 +34,11 @@
 .borderbottom{
     border-bottom:solid black 1px;
 }
+
+.minWidth{
+    min-width:500px;
+}
+
+.fontCard{
+    font-size:1.6vh;
+}

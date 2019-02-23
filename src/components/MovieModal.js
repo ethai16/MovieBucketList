@@ -10,8 +10,10 @@ import withMobileDialog from '@material-ui/core/withMobileDialog';
 import './styles/MovieModal.css'
 
 class ResponsiveDialog extends React.Component {
+
   state = {
     open: false,
+    
   };
 
   handleClickOpen = () => {
@@ -22,6 +24,12 @@ class ResponsiveDialog extends React.Component {
     this.setState({ open: false });
   };
 
+  goToPage = () => {
+    this.setState({ open: false });
+    window.location.href = `/movie/${this.props.movie.id}`
+  }
+
+
   render() {
     const { fullScreen } = this.props;
     var imagePath = 'https://image.tmdb.org/t/p/w600_and_h900_bestv2'
@@ -29,6 +37,7 @@ class ResponsiveDialog extends React.Component {
 
     return (
       <div>
+        <Button style = {{}} variant="outlined" color="primary" style = {{marginRight: '3px'}}>+</Button>
         <Button variant="outlined" color="primary" onClick={this.handleClickOpen}>
           More info
         </Button>
@@ -51,7 +60,7 @@ class ResponsiveDialog extends React.Component {
             <Button onClick={this.handleClose} color="primary">
               Disagree
             </Button>
-            <Button onClick={this.handleClose} color="primary" autoFocus>
+            <Button onClick={this.goToPage} color="primary" autoFocus>
               Agree
             </Button>
           </DialogActions>

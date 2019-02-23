@@ -1,3 +1,8 @@
 .flex{
     display:flex
 }
+
+.marginright{
+    padding-right:30px;
+    background-color:black;
+}
