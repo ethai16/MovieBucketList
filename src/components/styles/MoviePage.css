@@ -26,3 +26,10 @@
 .fontSize{
     font-size: 3vh;
 }
+
+@media screen and (min-width: 0px) and (max-width: 750px) {
+    .hide { display: none; }  /* show it on small screens */
+    .middleonsmall{
+        justify-content: center;
+    }
+  }
