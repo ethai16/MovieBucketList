@@ -1,115 +1,125 @@
 import React from 'react';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
-import './styles/MoviePage.css'
+import './styles/MoviePage.css';
 import { isAbsolute } from 'path';
+import Card from '@material-ui/core/Card';
+import CardMedia from '@material-ui/core/CardMedia';
+
+
+
 
 class MoviePage extends React.Component {
     constructor(props) {
         super(props);
-        
+
         this.state = {
-            isLoaded1: false,
-            isLoaded2: false,
-            isLoaded3: false,
-            isLoaded4: false,
+            isLoaded: false,
             cast: '',
             movieData: '',
             videos: '',
             images: '',
-            backdrop: ''
+            backdrop: '',
+            genres: '',
+            castMember: '',
+            budget: '',
+            earning: '',
+            runtime: ''
         }
 
-}
+    }
 
-    componentDidMount(){
-    var data = window.location.pathname.slice(7)
-    // var pageNumberString = this.pageNumber.toString()
-    fetch(`https://api.themoviedb.org/3/movie/${data}?api_key=62c52cfa5f5e3486e1a7b739ca88c626&language=en-US`)
-    .then(res => res.json())
-    .then(
-        (result)=>{
-            console.log(result)
-            this.setState({
-                ...this.state,
-                isLoaded1: true,
-                movieData: result
-            })
-        },
-        (error) => {
-            this.setState({
-                ...this.state,
-                isLoaded1:true,
-                error
-            });
-        },
-        fetch(`https://api.themoviedb.org/3/movie/${data}/credits?api_key=62c52cfa5f5e3486e1a7b739ca88c626`)
-        .then(res => res.json())
-        .then(
-            (result2)=>{
-                console.log(result2)
-                this.setState({
-                    ...this.state,
-                    isLoaded2: true,
-                    cast: result2
-                })
-            },
-            (error) => {
-                this.setState({
-                    ...this.state,
-                    isLoaded1:true,
-                    error
-                });
-            },
-            fetch(`https://api.themoviedb.org/3/movie/${data}/videos?api_key=62c52cfa5f5e3486e1a7b739ca88c626`)
-            .then(res => res.json())
-            .then(
-                (result3)=>{
-                    console.log(result3)
-                    this.setState({
-                        ...this.state,
-                        isLoaded3: true,
-                        videos: result3
-                    })
-                },
-                (error) => {
-                    this.setState({
-                        ...this.state,
-                        isLoaded3:true,
-                        error
-                    });
-                },
-                fetch(`http://api.themoviedb.org/3/movie/${data}/images?api_key=62c52cfa5f5e3486e1a7b739ca88c626`)
-                .then(res => res.json())
+    componentWillMount() {
+        var data = window.location.pathname.slice(7)
+        // var pageNumberString = this.pageNumber.toString()
+        Promise.all([
+            fetch(`https://api.themoviedb.org/3/movie/${data}?api_key=62c52cfa5f5e3486e1a7b739ca88c626&language=en-US`),
+            fetch(`https://api.themoviedb.org/3/movie/${data}/credits?api_key=62c52cfa5f5e3486e1a7b739ca88c626`),
+            fetch(`https://api.themoviedb.org/3/movie/${data}/videos?api_key=62c52cfa5f5e3486e1a7b739ca88c626`),
+            fetch(`http://api.themoviedb.org/3/movie/${data}/images?api_key=62c52cfa5f5e3486e1a7b739ca88c626`)
+        ])
+            .then(([res1, res2, res3, res4]) => Promise.all([res1.json(), res2.json(), res3.json(), res4.json()])
                 .then(
-                    (result4)=>{
+                    ([res1, res2, res3, res4]) => {
+                        var videoLink;
+                        var date = new Date(res1.release_date)
+                        console.log(res1)
+                        if (res3.results[0]) {
+                            videoLink = 'https://www.youtube.com/embed/' + res3.results[0].key
+                        } else {
+                            videoLink = ''
+                        }
+
+                        var fiveCast = [];
+
+                        for (var i = 0; i < 5; i++) {
+                            if (res2.cast[i] != undefined) {
+                                fiveCast.push(res2.cast[i])
+                            }
+                        }
+
+                        var castInfo;
+
+                        if (fiveCast.length === 5) {
+                            castInfo = fiveCast.map(person => {
+                                var image = "https://image.tmdb.org/t/p/w276_and_h350_face/" + person.profile_path
+                                return (
+                                    <Card style={{ width: '15vw' }}>
+                                        <CardMedia style={{ height: '250px' }} image={image} />
+                                        <div style={{ fontWeight: 'bold' }}>{person.name}</div>
+                                        {person.character}
+                                    </Card>)
+                            })
+                        } else {
+                            castInfo = ''
+                        }
+
+
+                        var numberWithCommas = (x) => {
+                            return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+                        }
+
                         this.setState({
                             ...this.state,
-                            isLoaded4: true,
-                            images: result4,
-                            backdrop: result4.backdrops[0].file_path
+                            isLoaded: true,
+                            movieData: res1,
+                            genres: res1.genres.map(genre => {
+                                return (genre.name + ' ')
+                            }),
+                            cast: fiveCast,
+                            video: videoLink,
+                            images: res4,
+                            backdrop: res4.backdrops[0].file_path,
+                            date: date.toDateString().split(' ').slice(1).join(' '),
+                            castMember: castInfo,
+                            budget: numberWithCommas(res1.budget),
+                            earning: numberWithCommas(res1.revenue),
+                            runtime: res1.runtime
                         })
                     },
                     (error) => {
                         this.setState({
                             ...this.state,
-                            isLoaded4:true,
+                            isLoaded: true,
                             error
                         });
                     }
                 )
-
             )
-        )
-    )
-}
+
+
+    }
+
+
+
+
 
     render() {
         var imagePath = 'https://image.tmdb.org/t/p/w600_and_h900_bestv2'
-        if (this.state.movieData.poster_path){
+        if (this.state.movieData.poster_path) {
             imagePath += this.state.movieData.poster_path
 
-        }else{
+        } else {
             imagePath = ''
         }
 
@@ -125,31 +135,69 @@ class MoviePage extends React.Component {
             backgroundRepeat: 'no - repeat',
             backgroundSize: 'cover',
             position: 'relative',
-            minHeight: '300px'
+            minHeight: '350px',
+            maxHeight: '520px',
+            overflow: 'hidden',
+            marginBottom: '3vw'
         }
 
         const layer = {
-            backgroundColor: 'rgba(0, 0, 0, 0.85)',
+            backgroundColor: 'rgba(0, 0, 0, 0.80)',
             position: 'absolute',
             top: '0',
             left: '0',
             width: '100%',
             height: '100%'
         }
-        
+        console.log(this.state.genres)
+        // var listGenre = this.state.genres.map(genre => {
+        //     return <div>{genre.name}</div>
+        // })
+
         return (
-            <div>
-                <div className = "background" style ={backgroundPicture}>
-                    <div style = {layer} className = "displayflex">
-                    <div  style = {{height:'100%', width: '30%'}} className ="middlePicture">
-                        <img src={imagePath} style = {{width:'65%', height:'auto'}}/>
-                    </div>
-                    <div style = {{overflow:'auto',width:'70%',color:'white', margin:'3vw', marginLeft: '0', minWidth: "300px", fontSize: "2.5vh"}}>
-                        <h1>{this.state.movieData.title}</h1>
-                        <div>{this.state.movieData.overview}</div>
-                    </div>
+            <div style={{ margin: '3vw' }}>
+                <div className="background" style={backgroundPicture}>
+                    <div style={layer} className="displayflex middleonsmall">
+                        <div style={{ height: '100%', width: '30%' }} className="middlePicture hide">
+                            <img src={imagePath} style={{ width: '65%', height: 'auto', padding: '30px', minWidth: '250px' }} />
+                        </div>
+                        <div style={{ overflow: 'auto', width: '70%', color: 'white', marginLeft: '0', marginRight: '5vw', minWidth: "300px", display: 'flex', alignItems: 'center' }}>
+                            <div>
+                                <h1>{this.state.movieData.title}</h1>
+                                <br />
+                                <div><div style={{ fontWeight: 'bold' }}>Overview:</div> <br />
+                                    {this.state.movieData.overview}
+                                </div>
+                                <br />
+                                <div><div style={{ fontWeight: 'bold' }}>Genre:</div> {this.state.genres}</div>
+                            </div>
+                        </div>
                     </div>
                 </div>
+                <div style={{ height: '50vh', width: '94vw', display: 'flex', justifyContent: 'space-between', marginBottom: '3vw' }}>
+                    <div style={{ color: 'white', backgroundColor: 'black', width: '30%', height: '100%' }}>
+                        Movie Info
+                        <br />
+                        Release Date: {' '}
+                        {this.state.date}
+                        <br />
+                        Budget: {' '}
+                        ${this.state.budget}
+                        <br />
+                        Revenue: {' '}
+                        ${this.state.earning}
+                        <br />
+                        Runtime: {' '}
+                        {this.state.runtime} Min
+                    </div>
+                    <div style={{ width: '66%', backgroundColor: 'black', height: '100%' }}>
+                        <iframe width="100%" height="100%" src={this.state.video} frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
+                    </div>
+                </div>
+                <div style={{ width: '94vw', display: 'flex', justifyContent: 'space-between' }}>
+                    {this.state.castMember}
+                </div>
+
             </div>
         );
     }
