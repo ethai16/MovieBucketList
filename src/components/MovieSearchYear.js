@@ -43,7 +43,7 @@ class MovieSearchYear extends React.Component {
 
 
         return (
-            <FormControl style={{ width: '15vw' }}>
+            <FormControl style={{ width: '15vw', marginRight: '5vh' }}>
                 <InputLabel htmlFor="year" >Year</InputLabel>
                 <Select
                     value={this.state.year}
@@ -57,7 +57,6 @@ class MovieSearchYear extends React.Component {
                         <em>None</em>
                     </MenuItem>
                     {createSelect()}
-                    {}
                 </Select>
             </FormControl>
         );

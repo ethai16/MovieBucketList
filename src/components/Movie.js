@@ -3,6 +3,8 @@ import Paper from '@material-ui/core/Paper'
 import './styles/Movie.css'
 import ResponsiveDialog from './MovieModal'
 import Button from '@material-ui/core/Button'
+import SimpleMenu from './DropDownAdd'
+
 
 class Movie extends React.Component {
     constructor(props) {
@@ -37,13 +39,14 @@ class Movie extends React.Component {
                 <div style = {{height:'100%'}}>
                     <img src={imagePath} style = {{height:'100%'}}/> 
                 </div>
-                <span className = "relative fontCard" style = {{width:'100%'}}>
-                    <h3 className = "x-margin borderbottom">{this.props.movie.title}</h3>    
+                <span className = "relative fontCard" style = {{width:'100%', display:'flex', flexDirection: 'column', justifyContent: 'space-between'}}>
+                    <div>
+                    <h5 className = "x-margin borderbottom">{this.props.movie.title}</h5>    
                     <div className = "x-margin">{overview.slice(0,300)+dots}</div>
-                    <div className = "positionButton absolute">
-                        <div style = {{display:'flex'}}>
-                        <ResponsiveDialog movie = {this.props.movie} />
-                        </div>
+                    </div>
+                    <div style = {{display:'flex', justifyContent: 'flex-end', marginBottom: '1vh', marginRight: '1vh', marginLeft: '1vh'}}>
+                        <SimpleMenu movie = {this.props.movie} />
+                        <ResponsiveDialog text = {"More Info"} movie = {this.props.movie} />
                     </div>
                 </span>
                 

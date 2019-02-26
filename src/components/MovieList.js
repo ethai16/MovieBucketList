@@ -1,6 +1,7 @@
 import React from 'react';
 import Movie from './Movie'
 import './styles/MovieList.css';
+import Button from '@material-ui/core/Button'
 
 
 class MovieList extends React.Component {
@@ -45,15 +46,23 @@ class MovieList extends React.Component {
             return <Movie key = {item.id} movie = {item}/>
         })
         return (
-            <div className = 'margin'>
+            <div className = 'marginLR'>
                 <div className = 'displayMovies'>
                     {item}
                 </div>
-                
-                <button onClick={()=>{
-                   var pagenumber = parseInt(this.path.slice(13,14)) + 1
-                   window.location.href = this.path.slice(0,13)+ pagenumber + this.path.slice(14)
-                }}>Next</button>
+
+                    <div style = {{marginBottom: '3vh', marginTop: '3vh', display: 'flex', justifyContent: 'flex-end'}}>
+                    <Button style = {{marginRight:'3vh'}} variant = "contained" color = "primary" onClick={()=>{
+                        if(parseInt(this.path.slice(13,14)) !== 1){
+                            var pagenumber = parseInt(this.path.slice(13,14)) - 1;
+                            window.location.href = this.path.slice(0,13)+ pagenumber + this.path.slice(14)
+                        }
+                    }}>Back</Button>
+                    <Button variant = "contained" color = "primary" onClick={()=>{
+                    var pagenumber = parseInt(this.path.slice(13,14)) + 1
+                    window.location.href = this.path.slice(0,13)+ pagenumber + this.path.slice(14)
+                    }}>Next</Button>
+                </div>
             </div>
         );
     }

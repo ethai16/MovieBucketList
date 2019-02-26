@@ -59,11 +59,13 @@ class MovieSearch extends React.Component {
 
     render() {
         return (
-            <div className = "center" >
-                <form autoComplete = "off">
+            <div className = "center" style = {{paddingTop: "3vh"}} >
+                <form autoComplete = "off" className = "center" style = {{flexDirection: 'column', width:'100vw'}}>
+                    <div>
                     <MovieSearchYear updateYear = {(yearInput)=> this.updateYear(yearInput)} searched ={this.state.year}/>
                     <MovieSearchGenre updateGenre = {(genreInput)=>this.updateGenre(genreInput)}searched ={this.state.genre}/>
-                    <Button onClick = {()=>this.search()}>Sort</Button>
+                    </div>
+                    <Button variant = "contained" onClick = {()=>this.search()} className ="center" style = {{marginTop:'3vh'}}>Sort</Button>
                 </form>
             </div>
         );

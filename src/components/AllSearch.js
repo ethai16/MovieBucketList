@@ -2,7 +2,7 @@ import React from 'react';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import Movie from './Movie';
-import './styles/AllSearch.css'
+import './styles/AllSearch.css';
 
 class AllSearch extends React.Component {
     constructor(props) {
@@ -62,17 +62,25 @@ class AllSearch extends React.Component {
 
         return (
             <div>
-                <div>
+                {/* <div>
                     <TextField value={this.state.textFieldValue} onChange={this.handleTextFieldChange} />
                     <Button onClick={() => this.search()}>Search</Button>
-                </div>
+                </div> */}
                 <div className = "middle">
                     {item}
                 </div>
-                <button onClick={()=>{
+                <div style = {{marginRight:'3vh',marginBottom: '3vh', marginTop: '3vh', display: 'flex', justifyContent: 'flex-end'}}>
+                <Button style = {{marginRight:'3vh'}} variant = "contained" color = "primary" onClick={()=>{
+                    if(parseInt(this.path.slice(13,14)) !== 1){
+                        var pagenumber = parseInt(this.path.slice(13,14)) - 1;
+                        window.location.href = this.path.slice(0,13)+ pagenumber + this.path.slice(14)
+                    }
+                }}>Back</Button>
+                <Button variant = "contained" color = "primary" onClick={()=>{
                    var pagenumber = parseInt(this.path.slice(13,14)) + 1;
                    window.location.href = this.path.slice(0,13)+ pagenumber + this.path.slice(14)
-                }}>Next</button>
+                }}>Next</Button>
+                </div>
             </div>
         );
     }

@@ -5,7 +5,8 @@ import './styles/MoviePage.css';
 import { isAbsolute } from 'path';
 import Card from '@material-ui/core/Card';
 import CardMedia from '@material-ui/core/CardMedia';
-
+import Button from '@material-ui/core/Button';
+import {connect} from 'react-redux';
 
 
 
@@ -65,7 +66,7 @@ class MoviePage extends React.Component {
                                 var image = "https://image.tmdb.org/t/p/w276_and_h350_face/" + person.profile_path
                                 return (
                                     <Card style={{ width: '15vw' }}>
-                                        <CardMedia style={{ height: '250px' }} image={image} />
+                                        <CardMedia style={{ height: '250px' }} image={image}/>
                                         <div style={{ fontWeight: 'bold' }}>{person.name}</div>
                                         {person.character}
                                     </Card>)
@@ -149,7 +150,6 @@ class MoviePage extends React.Component {
             width: '100%',
             height: '100%'
         }
-        console.log(this.state.genres)
         // var listGenre = this.state.genres.map(genre => {
         //     return <div>{genre.name}</div>
         // })
@@ -175,20 +175,19 @@ class MoviePage extends React.Component {
                     </div>
                 </div>
                 <div style={{ height: '50vh', width: '94vw', display: 'flex', justifyContent: 'space-between', marginBottom: '3vw' }}>
-                    <div style={{ color: 'white', backgroundColor: 'black', width: '30%', height: '100%' }}>
-                        Movie Info
+                    <div style={{ color: 'white', width: '30%', height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'space-between'}}>
+                        <div style = {{display:'flex', justifyContent:'space-between'}}>
+                            <Button onClick = {()=>{this.props.onAddMovieWatchList(this.state.movieData)}}variant = "contained" color = 'primary'>ADD TO WATCHLIST</Button>
+                            <Button onClick = {()=>{this.props.onAddMovieArchive(this.state.movieData)}}variant = "contained" color = 'primary'>ADD TO ARCHIVE</Button>
+                        </div>
+                        <br/>
+                        <Card style ={{ backgroundColor: 'rgba(0, 0, 0, 0.80)', padding: '2vh'}}>Release Date: {' '}{this.state.date}</Card>
                         <br />
-                        Release Date: {' '}
-                        {this.state.date}
+                        <Card style ={{ backgroundColor: 'rgba(0, 0, 0, 0.80)', padding: '2vh'}}>Runtime: {' '}{this.state.runtime} Min</Card>
                         <br />
-                        Budget: {' '}
-                        ${this.state.budget}
+                        <Card style ={{ backgroundColor: 'rgba(0, 0, 0, 0.80)', padding: '2vh'}}>Budget: {' '}${this.state.budget}</Card>
                         <br />
-                        Revenue: {' '}
-                        ${this.state.earning}
-                        <br />
-                        Runtime: {' '}
-                        {this.state.runtime} Min
+                        <Card style ={{ backgroundColor: 'rgba(0, 0, 0, 0.80)', padding: '2vh'}}>Revenue: {' '}${this.state.earning}</Card>
                     </div>
                     <div style={{ width: '66%', backgroundColor: 'black', height: '100%' }}>
                         <iframe width="100%" height="100%" src={this.state.video} frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
@@ -203,7 +202,31 @@ class MoviePage extends React.Component {
     }
 }
 
+function mapDispatchToProps(dispatch){
+    return {
+        onAddMovieArchive: (item) => dispatch({
+            type: 'addMovieArchive',
+            movieData: item
+        }),
+        onRemoveMovieArchive: (item) => dispatch({
+            type: 'removeMovieArchive',
+            movieData: item
+        }),
+        onAddMovieWatchList: (item) => dispatch({
+            type: 'addMovieWatchlist',
+            movieData: item
+        }),
+        onRemoveMovieWatchlist: (item) => dispatch({
+            type: 'removeMovieWatchlist',
+            movieData: item
+        }),
+        onMoveMovieToArchive: (item) => dispatch({
+            type: 'moveMovieToArchive',
+            movieData: item
+        })
+    }
+}
 
 
 
-export default MoviePage
+export default connect(null, mapDispatchToProps)(MoviePage)
