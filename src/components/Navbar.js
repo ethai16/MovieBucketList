@@ -31,15 +31,19 @@ class MyNavbar extends React.Component {
         <Navbar bg="dark" variant="dark">
             <Navbar.Brand href="#home">Navbar</Navbar.Brand>
             <Nav className="mr-auto">
-              <Nav.Link href="#home">Home</Nav.Link>
               <Nav.Link href="/movies/page=1">Discover</Nav.Link>
-              <Nav.Link href="#pricing">Pricing</Nav.Link>
+              <Nav.Link href="/upnext">Up Next</Nav.Link>
+              <NavDropdown title="Your Movies" id="collasible-nav-dropdown">
+                    <NavDropdown.Item href="/watchlist">Watch List</NavDropdown.Item>
+                    <NavDropdown.Divider />
+                    <NavDropdown.Item href="/archive">Archive</NavDropdown.Item>
+                </NavDropdown>
             </Nav>
             <Form inline onSubmit = {(e) => this.search(e)}>
               <FormControl type="text" placeholder="Search" className="mr-sm-2" value={this.state.textFieldValue}  onChange={this.handleTextFieldChange}/>
               {/* <Button variant="outline-info" onClick={() => this.search()}>Search</Button> */}
             </Form>
-          </Navbar>
+        </Navbar>
         );
     }
 }
