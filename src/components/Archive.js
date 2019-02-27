@@ -32,7 +32,7 @@ class Archive extends React.Component {
                 height: '80vh',
     
                 /* Create the parallax scrolling effect */
-                backgroundPosition: 'center',
+                backgroundPosition: '50% 0%',
                 backgroundRepeat: 'no - repeat',
                 backgroundSize: 'cover',
                 position: 'relative',
@@ -106,7 +106,7 @@ class Archive extends React.Component {
                     </div>
                     {/* </div> */}
                 </div>
-                <div style={{minHeight:'100vh'}}>
+                <div style={{minHeight:'100vh', marginBottom: '3vh'}}>
                     <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center'}}>
                         {listMovies}
                     </div>
