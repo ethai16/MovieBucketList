@@ -35,7 +35,7 @@ class Movie extends React.Component {
         }
 
         return (
-            <Paper className = "flex minWidth" style = {{height:'30vh', width:'30vw', margin: '3vw', float: 'left'}}>
+            <Paper className = "flex minWidth" style = {{height:'30vh', width:'30vw', margin: '2vw', float: 'left'}}>
                 <div style = {{height:'100%'}}>
                     <img src={imagePath} style = {{height:'100%'}}/> 
                 </div>
