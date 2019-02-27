@@ -33,6 +33,7 @@ class MyNavbar extends React.Component {
         <MDBNavbar color="bg-dark" fixed="top" dark expand="md" scrolling transparent style = {{boxShadow:'0 2px 5px 0 rgba(0,0,0,.16), 0 2px 10px 0 rgba(0,0,0,.12)'}}>
             {/* <MDBNavbarBrand href="#home"><i class="fas fa-film"></i>TMBL</MDBNavbarBrand> */}
             <Navbar.Brand href = '/'><i class="fas fa-film"></i>TMBL</Navbar.Brand>
+            <Navbar.Collapse>
             <MDBNavbarNav left className="mr-auto pcss">
               <Nav.Link style ={{height:'auto', paddingTop:'0', paddingBottom: '0',borderRight: 'solid rgba(255,255,255) 1px',color:'white'}} href="/movies/page=1">Discover</Nav.Link>
               <Nav.Link style ={{height:'auto', paddingTop:'0', paddingBottom: '0',borderRight: 'solid rgba(255,255,255) 1px',color:'white'}} href="/upnext">Up Next</Nav.Link>
@@ -43,6 +44,7 @@ class MyNavbar extends React.Component {
               <FormControl type="text" placeholder="Search" className="mr-sm-2" value={this.state.textFieldValue}  onChange={this.handleTextFieldChange}/>
               {/* <Button variant="outline-info" onClick={() => this.search()}>Search</Button> */}
             </Form>
+            </Navbar.Collapse>
         </MDBNavbar>
         );
     }
