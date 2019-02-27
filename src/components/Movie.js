@@ -15,7 +15,7 @@ class Movie extends React.Component {
 
     render() {
         var dots = '';
-        if (this.props.movie.overview.length > 300){
+        if (this.props.movie.overview.length > 100){
             dots = '...'
         }
 
@@ -42,7 +42,7 @@ class Movie extends React.Component {
                 <span className = "relative fontCard" style = {{width:'100%', display:'flex', flexDirection: 'column', justifyContent: 'space-between'}}>
                     <div>
                     <h5 className = "x-margin borderbottom">{this.props.movie.title}</h5>    
-                    <div className = "x-margin">{overview.slice(0,300)+dots}</div>
+                    <div className = "x-margin">{overview.slice(0,100)+dots}</div>
                     </div>
                     <div style = {{display:'flex', justifyContent: 'flex-end', marginBottom: '1vh', marginRight: '1vh', marginLeft: '1vh'}}>
                         <SimpleMenu movie = {this.props.movie} />
