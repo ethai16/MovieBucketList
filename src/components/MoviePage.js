@@ -179,17 +179,13 @@ class MoviePage extends React.Component {
                 </div>
                 <div style={{ height: '50vh', width: '94vw', display: 'flex', justifyContent: 'space-between', marginBottom: '3vw' }}>
                     <div style={{ color: 'white', width: '30%', height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'space-between'}}>
-                        <div style = {{display:'flex', justifyContent:'space-between'}}>
-                            <Button onClick = {()=>{this.props.onAddMovieWatchList(this.state.movieData)}}variant = "contained" color = 'primary'>ADD TO WATCHLIST</Button>
-                            <Button onClick = {()=>{this.props.onAddMovieArchive(this.state.movieData)}}variant = "contained" color = 'primary'>ADD TO ARCHIVE</Button>
+                        <div style = {{display:'flex', justifyContent:'center', flexWrap: 'wrap'}}>
+                            <Button style = {{width:'100%', minHeight:'40px'}} onClick = {()=>{this.props.onAddMovieWatchList(this.state.movieData)}}variant = "contained" color = 'primary'>ADD TO WATCHLIST</Button>
+                            <Button style = {{width:'100%', minHeight:'40px', marginTop:'5px'}} onClick = {()=>{this.props.onAddMovieArchive(this.state.movieData)}}variant = "contained" color = 'primary'>ADD TO ARCHIVE</Button>
                         </div>
-                        <br/>
                         <Card style ={{ backgroundColor: 'rgba(0, 0, 0, 0.80)', padding: '2vh'}}>Release Date: {' '}{this.state.date}</Card>
-                        <br />
                         <Card style ={{ backgroundColor: 'rgba(0, 0, 0, 0.80)', padding: '2vh'}}>Runtime: {' '}{this.state.runtime} Min</Card>
-                        <br />
                         <Card style ={{ backgroundColor: 'rgba(0, 0, 0, 0.80)', padding: '2vh'}}>Budget: {' '}${this.state.budget}</Card>
-                        <br />
                         <Card style ={{ backgroundColor: 'rgba(0, 0, 0, 0.80)', padding: '2vh'}}>Revenue: {' '}${this.state.earning}</Card>
                     </div>
                     <div style={{ width: '66%', backgroundColor: 'black', height: '100%' }}>
