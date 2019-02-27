@@ -39,6 +39,16 @@
     min-width:375px;
 }
 
-.fontCard{
-    font-size:8pt;
+
+
+@media screen and (min-width: 0px) and (max-width: 1600px) {
+    .fontCard{
+        font-size:8pt;
+    }
+  }
+
+@media screen and (min-width: 1600px){
+    .fontCard{
+        font-size:12pt;
+    }
 }
