@@ -34,7 +34,7 @@ class WatchList extends React.Component {
                 height: '80vh',
     
                 /* Create the parallax scrolling effect */
-                backgroundPosition: '50% 0%',
+                backgroundPosition: 'center',
                 backgroundRepeat: 'no - repeat',
                 backgroundSize: 'cover',
                 position: 'relative',
