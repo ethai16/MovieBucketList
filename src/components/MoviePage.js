@@ -139,7 +139,8 @@ class MoviePage extends React.Component {
             minHeight: '350px',
             maxHeight: '520px',
             overflow: 'hidden',
-            marginBottom: '3vw'
+            marginBottom: '3vw',
+            border: '3px solid white'
         }
 
         const layer = {
@@ -155,7 +156,9 @@ class MoviePage extends React.Component {
         // })
 
         return (
-            <div style={{ margin: '3vw' }}>
+            <div>
+                <div style = {{backgroundColor: 'rgba(0,0,0,.80)', height:'50vh', width:'100vw', paddingTop:'130px'}}>
+                <div style={{ margin: '3vw', marginTop: '0'}}>
                 <div className="background" style={backgroundPicture}>
                     <div style={layer} className="displayflex middleonsmall">
                         <div style={{ height: '100%', width: '30%' }} className="middlePicture hide">
@@ -197,6 +200,8 @@ class MoviePage extends React.Component {
                     {this.state.castMember}
                 </div>
 
+            </div>
+                </div>
             </div>
         );
     }

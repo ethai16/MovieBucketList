@@ -59,7 +59,7 @@ class MovieSearch extends React.Component {
 
     render() {
         return (
-            <div className = "center" style = {{paddingTop: "3vh"}} >
+            <div className = "center" style = {{paddingTop: "8vh"}} >
                 <form autoComplete = "off" className = "center" style = {{flexDirection: 'column', width:'100vw'}}>
                     <div>
                     <MovieSearchYear updateYear = {(yearInput)=> this.updateYear(yearInput)} searched ={this.state.year}/>

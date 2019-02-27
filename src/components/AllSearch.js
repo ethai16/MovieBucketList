@@ -66,6 +66,9 @@ class AllSearch extends React.Component {
                     <TextField value={this.state.textFieldValue} onChange={this.handleTextFieldChange} />
                     <Button onClick={() => this.search()}>Search</Button>
                 </div> */}
+                <h2 style = {{height: '40vh', width: '100vw', backgroundColor:'rgba(0,0,0,.80)',color:'white', display: 'flex', justifyContent: 'center', alignItems: 'center', fontSize: '30pt'}}>
+                    Search 
+                </h2>
                 <div className = "middle">
                     {item}
                 </div>

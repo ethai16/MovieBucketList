@@ -28,7 +28,7 @@ class WatchListMovie extends React.Component {
         }
 
         return (
-            <Paper className ="containerHover show"style = {{margin: '2px', display: 'none'}}>
+            <Paper className ="containerHover"style = {{margin: '2px'}}>
                 <img src = {fullPath} style = {{width:'15vw', minWidth: '200px'}} className = "imageHover"/>
                 <div className="middleHover">
                     <Button onClick={()=>{this.props.onMoveMovieToArchive(this.props.movie)}} variant ="contained" color = "primary" className="textHover">Watched</Button>
