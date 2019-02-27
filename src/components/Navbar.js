@@ -33,7 +33,8 @@ class MyNavbar extends React.Component {
         <MDBNavbar color="bg-dark" fixed="top" dark expand="md" scrolling transparent style = {{boxShadow:'0 2px 5px 0 rgba(0,0,0,.16), 0 2px 10px 0 rgba(0,0,0,.12)'}}>
             {/* <MDBNavbarBrand href="#home"><i class="fas fa-film"></i>TMBL</MDBNavbarBrand> */}
             <Navbar.Brand href = '/'><i class="fas fa-film"></i>TMBL</Navbar.Brand>
-            <Navbar.Collapse>
+            <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+            <Navbar.Collapse id="responsive-navbar-nav">
             <MDBNavbarNav left className="mr-auto pcss">
               <Nav.Link style ={{height:'auto', paddingTop:'0', paddingBottom: '0',borderRight: 'solid rgba(255,255,255) 1px',color:'white'}} href="/movies/page=1">Discover</Nav.Link>
               <Nav.Link style ={{height:'auto', paddingTop:'0', paddingBottom: '0',borderRight: 'solid rgba(255,255,255) 1px',color:'white'}} href="/upnext">Up Next</Nav.Link>
