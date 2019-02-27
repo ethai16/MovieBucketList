@@ -16,6 +16,8 @@ class MovieQue extends React.Component {
         var rand;
         var backgroundPicture;
         var overview;
+        var overviewTag;
+        var posterDiv;
 
         // if (this.props.watchList[0].movieData.poster_path){
         //     fullPath = imagePath + this.props.watchList[0].movieData.poster_path
@@ -32,6 +34,7 @@ class MovieQue extends React.Component {
             }
             modal = <ResponsiveDialog text = {'Randomize!'} movie = {this.props.watchList[rand].movieData} />
             overview = <p>{this.props.watchList[0].movieData.overview}</p>
+            overviewTag =<h2 style={{ fontWeight: 'bold' }}>Overview:</h2> 
 
             backgroundPicture = {
                 /* The image used */
@@ -49,10 +52,14 @@ class MovieQue extends React.Component {
                 overflow: 'hidden',
             }
             fullPath = imagePath + this.props.watchList[0].movieData.poster_path
+            posterDiv =  (<div style={{ height: '100%', width: '30%', marginLeft: "15vw" }} className="middlePicture hide">
+                            <img src={fullPath} style={{ width: '65%', height: 'auto', padding: '30px', minWidth: '250px' }} />
+                        </div>)
 
         }else{
-            theTitle = 'Go to Discover and Add Movies to Your Watch List Now!'
-            fullPath = ''
+            theTitle = <div style ={{textAlign:'center'}}>Go to Discover and Add Movies to Your Watch List Now!</div>
+            fullPath = '';
+            posterDiv = '';
             backgroundPicture = {
                                 /* Full height */
                                 height: '60vh',
@@ -89,16 +96,14 @@ class MovieQue extends React.Component {
                 <div className="background" style={backgroundPicture}>
                     <div style={layer}>
                     <h2 style ={{textAlign: 'center', fontWeight: 'bolder', color: 'white', fontSize:'40pt', paddingBottom:'20px', margin:'0',marginTop:'15vh'}}>Next On Your Watch List!</h2>
-                    <div className="displayflex middleonsmall">
-                        <div style={{ height: '100%', width: '30%' }} className="middlePicture hide">
-                            <img src={fullPath} style={{ width: '65%', height: 'auto', padding: '30px', minWidth: '250px' }} />
-                        </div>
-                        <div style={{ overflow: 'auto', width: '70%', color: 'white', marginLeft: '0', marginRight: '5vw', minWidth: "300px", display: 'flex', alignItems: 'center'}}>
+                    <div className="displayflex middleonsmall" style = {{justifyContent:'center'}}>
+                        {posterDiv}
+                        <div style={{ overflow: 'auto', color: 'white', marginLeft: '5vw', marginRight: '15vw', minWidth: "300px", display: 'flex', alignItems: 'center'}}>
                             <div>
                                 <br />
                                 <h1>{theTitle}</h1>
                                 <br />
-                                <div><h2 style={{ fontWeight: 'bold' }}>Overview:</h2> <br />
+                                <div>{overviewTag}<br />
                                     {overview}
                                 </div>
                                 <br />
