@@ -38,8 +38,8 @@ class SimpleMenu extends React.Component {
                     open={Boolean(anchorEl)}
                     onClose={this.handleClose}
                 >
-                    <MenuItem onClick={()=>{this.props.onAddMovieWatchList(this.props.movie)}}>Add To Watch List</MenuItem>
-                    <MenuItem onClick={()=>{this.props.onAddMovieArchive(this.props.movie)}}>Add To History</MenuItem>
+                    <MenuItem onClick={()=>{(this.props.onAddMovieWatchList(this.props.movie));(this.handleClose())}}>Add To Watch List</MenuItem>
+                    <MenuItem onClick={()=>{(this.props.onAddMovieArchive(this.props.movie));(this.handleClose())}}>Add To Archive</MenuItem>
                 </Menu>
             </div>
         );
