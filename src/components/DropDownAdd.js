@@ -8,6 +8,7 @@ class SimpleMenu extends React.Component {
     state = {
         anchorEl: null,
     };
+    
 
     handleClick = event => {
         this.setState({ anchorEl: event.currentTarget });
