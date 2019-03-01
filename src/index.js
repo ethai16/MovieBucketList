@@ -15,6 +15,7 @@ import {store,  persistor} from './configureStore';
 import WatchList from './components/WatchList';
 import Archive from './components/Archive';
 import MovieQue from './components/MovieQue'
+import Notification from './components/Notification'
 
 // const persistedState = loadState()
 // const store = createStore(
@@ -38,7 +39,8 @@ ReactDOM.render(
                         <Route path = "/archive" component = {Archive}/>
                         <Route path = '/movies/:pageID' component = {MovieSearchPage}/>
                         <Route path = '/search/:pageID' component = {AllSearch}/>
-                        <Route path = '/movie/:pageID' component = {MoviePage}/>
+                        <Route exact path = '/movie/:pageID' component = {MoviePage}/>
+                        <Route exact path = '/notification' component = {Notification}/>
                     </Switch>
                 </BrowserRouter>
         </BaseLayout>

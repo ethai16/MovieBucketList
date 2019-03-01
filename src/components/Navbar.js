@@ -39,7 +39,7 @@ class MyNavbar extends React.Component {
         return (
         <MDBNavbar color="bg-dark" fixed="top" dark expand="md" scrolling transparent style = {{boxShadow:'0 2px 5px 0 rgba(0,0,0,.16), 0 2px 10px 0 rgba(0,0,0,.12)'}}>
             {/* <MDBNavbarBrand href="#home"><i class="fas fa-film"></i>TMBL</MDBNavbarBrand> */}
-            <Navbar.Brand href = '/'><i class="fas fa-film"></i>TMBL</Navbar.Brand>
+            <Navbar.Brand href = '/'><i className="fas fa-film"></i>TMBL</Navbar.Brand>
             <MDBNavbarToggler onClick ={this.toggleCollapse} />
             <MDBCollapse id="navbarCollapse3" isOpen={this.state.isOpen} navbar>
             <MDBNavbarNav left className="mr-auto pcss">
