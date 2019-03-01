@@ -2,6 +2,8 @@ import React from 'react';
 import MovieList from './MovieList'
 import MovieSearch from './MovieSearch'
 import './styles/global.css'
+import {NotificationContainer, NotificationManager} from 'react-notifications';
+import 'react-notifications/lib/notifications.css';
 
 class MovieSearchPage extends React.Component {
     constructor(props) {
@@ -27,6 +29,7 @@ class MovieSearchPage extends React.Component {
                 </h2>
                 <MovieSearch getLink = {(passedLink)=>{this.getLink(passedLink)}}/>
                 <MovieList link = {this.state.link}/>
+                <NotificationContainer />
             </div>
         );
     }
