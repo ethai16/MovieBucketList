@@ -3,12 +3,36 @@ import Button from '@material-ui/core/Button';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import {connect} from 'react-redux';
+import {NotificationContainer, NotificationManager} from 'react-notifications';
+import 'react-notifications/lib/notifications.css';
+
+
 
 class SimpleMenu extends React.Component {
     state = {
         anchorEl: null,
     };
-    
+
+    createNotification = (type) => {
+        return () => {
+            switch (type) {
+                case 'watchList':
+                    NotificationManager.success('Added to Watch List', this.props.movie.title, 1500);
+                    break;
+                case 'archive':
+                    NotificationManager.success('Added to Archive', this.props.movie.title, 1500);
+                    break;
+                case 'warning':
+                    NotificationManager.warning('Warning message', 'Close after 3000ms', 3000);
+                    break;
+                case 'error':
+                    NotificationManager.error('Error message', 'Click me!', 5000, () => {
+                        alert('callback');
+                    });
+                break;
+            }
+        };
+    };
 
     handleClick = event => {
         this.setState({ anchorEl: event.currentTarget });
@@ -32,16 +56,25 @@ class SimpleMenu extends React.Component {
                     style={{ marginRight: '1vh' }}
                 >
                     Add
-        </Button>
+                </Button>
                 <Menu
                     id="simple-menu"
                     anchorEl={anchorEl}
                     open={Boolean(anchorEl)}
                     onClose={this.handleClose}
-                >
-                    <MenuItem onClick={()=>{(this.props.onAddMovieWatchList(this.props.movie));(this.handleClose())}}>Add To Watch List</MenuItem>
-                    <MenuItem onClick={()=>{(this.props.onAddMovieArchive(this.props.movie));(this.handleClose())}}>Add To Archive</MenuItem>
+                >   
+                    <MenuItem onClick={()=>{(this.props.onAddMovieWatchList(this.props.movie));(this.handleClose())}}
+                    onClick ={(this.createNotification('watchList'))}
+                    >Add To Watch List</MenuItem>
+                    <MenuItem  onClick={()=>{
+                        (this.props.onAddMovieArchive(this.props.movie));
+                        (this.handleClose());                        
+                        }}
+                     onClick ={(this.createNotification('archive'))}>
+                     Add To Archive
+                    </MenuItem>
                 </Menu>
+
             </div>
         );
     }
