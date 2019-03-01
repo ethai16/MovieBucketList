@@ -7,6 +7,8 @@ import Card from '@material-ui/core/Card';
 import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import {connect} from 'react-redux';
+import {NotificationContainer, NotificationManager} from 'react-notifications';
+import 'react-notifications/lib/notifications.css';
 
 
 
@@ -112,6 +114,26 @@ class MoviePage extends React.Component {
     }
 
 
+    createNotification = (type) => {
+        return () => {
+            switch (type) {
+                case 'watchList':
+                    NotificationManager.success('Added to Watch List', this.state.movieData.title, 1500);
+                    break;
+                case 'archive':
+                    NotificationManager.success('Added to Archive', this.state.movieData.title, 1500);
+                    break;
+                case 'warning':
+                    NotificationManager.warning('Warning message', 'Close after 3000ms', 3000);
+                    break;
+                case 'error':
+                    NotificationManager.error('Error message', 'Click me!', 5000, () => {
+                        alert('callback');
+                    });
+                break;
+            }
+        };
+    };
 
 
 
@@ -180,8 +202,8 @@ class MoviePage extends React.Component {
                 <div style={{ height: '50vh', width: '94vw', display: 'flex', justifyContent: 'space-between', marginBottom: '3vw' }}>
                     <div style={{ color: 'white', width: '30%', height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'space-between'}}>
                         <div style = {{display:'flex', justifyContent:'center', flexWrap: 'wrap'}}>
-                            <Button style = {{width:'100%', minHeight:'40px'}} onClick = {()=>{this.props.onAddMovieWatchList(this.state.movieData)}}variant = "contained" color = 'primary'>ADD TO WATCHLIST</Button>
-                            <Button style = {{width:'100%', minHeight:'40px', marginTop:'5px'}} onClick = {()=>{this.props.onAddMovieArchive(this.state.movieData)}}variant = "contained" color = 'primary'>ADD TO ARCHIVE</Button>
+                            <Button style = {{width:'100%', minHeight:'40px'}} onClick = {()=>{this.props.onAddMovieWatchList(this.state.movieData)}} onClick = {this.createNotification('watchList')}variant = "contained" color = 'primary'>ADD TO WATCHLIST</Button>
+                            <Button style = {{width:'100%', minHeight:'40px', marginTop:'5px'}}onClick = {()=>{this.props.onAddMovieArchive(this.state.movieData)}} onClick = {this.createNotification('archive')}variant = "contained" color = 'primary'>ADD TO ARCHIVE</Button>
                         </div>
                         <Card style ={{ backgroundColor: 'rgba(0, 0, 0, 0.80)', padding: '2vh'}}>Release Date: {' '}{this.state.date}</Card>
                         <Card style ={{ backgroundColor: 'rgba(0, 0, 0, 0.80)', padding: '2vh'}}>Runtime: {' '}{this.state.runtime} Min</Card>
@@ -198,6 +220,8 @@ class MoviePage extends React.Component {
 
             </div>
                 </div>
+                <NotificationContainer />
+
             </div>
         );
     }
