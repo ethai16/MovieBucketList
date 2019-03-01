@@ -117,9 +117,9 @@ class MoviePage extends React.Component {
     createNotification = (type) => {
         switch (type) {
             case 'watchList':
-                return NotificationManager.success('Added to Watch List', this.props.movie.title, 1500);
+                return NotificationManager.success('Added to Watch List', this.state.movieData.title, 1500);
             case 'archive':
-                return NotificationManager.success('Added to Archive', this.props.movie.title, 1500);
+                return NotificationManager.success('Added to Archive', this.state.movieData.title, 1500);
             case 'warning':
                 return NotificationManager.warning('Warning message', 'Close after 3000ms', 3000);
             case 'error':
