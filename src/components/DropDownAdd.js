@@ -14,25 +14,22 @@ class SimpleMenu extends React.Component {
     };
 
     createNotification = (type) => {
-        return () => {
             switch (type) {
                 case 'watchList':
-                    NotificationManager.success('Added to Watch List', this.props.movie.title, 1500);
-                    break;
+                    return NotificationManager.success('Added to Watch List', this.props.movie.title, 1500);
                 case 'archive':
-                    NotificationManager.success('Added to Archive', this.props.movie.title, 1500);
-                    break;
+                    return NotificationManager.success('Added to Archive', this.props.movie.title, 1500);
                 case 'warning':
-                    NotificationManager.warning('Warning message', 'Close after 3000ms', 3000);
-                    break;
+                    return NotificationManager.warning('Warning message', 'Close after 3000ms', 3000);
                 case 'error':
-                    NotificationManager.error('Error message', 'Click me!', 5000, () => {
+                   return NotificationManager.error('Error message', 'Click me!', 5000, () => {
                         alert('callback');
                     });
-                break;
+                default:
+                    break
             }
         };
-    };
+
 
     handleClick = event => {
         this.setState({ anchorEl: event.currentTarget });
@@ -41,6 +38,18 @@ class SimpleMenu extends React.Component {
     handleClose = () => {
         this.setState({ anchorEl: null });
     };
+
+    combineFunctionArchive = (type) => {
+        this.props.onAddMovieArchive(this.props.movie)
+        this.handleClose();
+        this.createNotification(type)
+    }
+
+    combineFunctionWatchList= (type) => {
+        this.props.onAddMovieWatchList(this.props.movie)
+        this.handleClose();
+        this.createNotification(type)
+    }
 
     render() {
         const { anchorEl } = this.state;
@@ -63,14 +72,9 @@ class SimpleMenu extends React.Component {
                     open={Boolean(anchorEl)}
                     onClose={this.handleClose}
                 >   
-                    <MenuItem onClick={()=>{(this.props.onAddMovieWatchList(this.props.movie));(this.handleClose())}}
-                    onClick ={(this.createNotification('watchList'))}
+                    <MenuItem onClick={()=>this.combineFunctionWatchList('watchList')}
                     >Add To Watch List</MenuItem>
-                    <MenuItem  onClick={()=>{
-                        (this.props.onAddMovieArchive(this.props.movie));
-                        (this.handleClose());                        
-                        }}
-                     onClick ={(this.createNotification('archive'))}>
+                    <MenuItem  onClick={()=>{this.combineFunctionArchive('archive')}}>
                      Add To Archive
                     </MenuItem>
                 </Menu>
