@@ -1,14 +1,14 @@
 {
-  "main.css": "/MoveieBucketList/static/css/main.251f1a5c.chunk.css",
-  "main.js": "/MoveieBucketList/static/js/main.cbeca9d2.chunk.js",
-  "main.js.map": "/MoveieBucketList/static/js/main.cbeca9d2.chunk.js.map",
-  "runtime~main.js": "/MoveieBucketList/static/js/runtime~main.195da385.js",
-  "runtime~main.js.map": "/MoveieBucketList/static/js/runtime~main.195da385.js.map",
-  "static/js/2.ce4317d3.chunk.js": "/MoveieBucketList/static/js/2.ce4317d3.chunk.js",
-  "static/js/2.ce4317d3.chunk.js.map": "/MoveieBucketList/static/js/2.ce4317d3.chunk.js.map",
-  "index.html": "/MoveieBucketList/index.html",
-  "precache-manifest.aa3cc6a0e45af641d9f0627ac6a41f0e.js": "/MoveieBucketList/precache-manifest.aa3cc6a0e45af641d9f0627ac6a41f0e.js",
-  "service-worker.js": "/MoveieBucketList/service-worker.js",
-  "static/css/main.251f1a5c.chunk.css.map": "/MoveieBucketList/static/css/main.251f1a5c.chunk.css.map",
-  "static/media/joshua-eckstein-1099605-unsplash.jpg": "/MoveieBucketList/static/media/joshua-eckstein-1099605-unsplash.aa6e7820.jpg"
+  "main.css": "./static/css/main.251f1a5c.chunk.css",
+  "main.js": "./static/js/main.cbeca9d2.chunk.js",
+  "main.js.map": "./static/js/main.cbeca9d2.chunk.js.map",
+  "runtime~main.js": "./static/js/runtime~main.9eb600ee.js",
+  "runtime~main.js.map": "./static/js/runtime~main.9eb600ee.js.map",
+  "static/js/2.ce4317d3.chunk.js": "./static/js/2.ce4317d3.chunk.js",
+  "static/js/2.ce4317d3.chunk.js.map": "./static/js/2.ce4317d3.chunk.js.map",
+  "index.html": "./index.html",
+  "precache-manifest.a6dab8360b5e28658ec83824c41cc382.js": "./precache-manifest.a6dab8360b5e28658ec83824c41cc382.js",
+  "service-worker.js": "./service-worker.js",
+  "static/css/main.251f1a5c.chunk.css.map": "./static/css/main.251f1a5c.chunk.css.map",
+  "static/media/joshua-eckstein-1099605-unsplash.jpg": "./static/media/joshua-eckstein-1099605-unsplash.aa6e7820.jpg"
 }
