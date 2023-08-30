@@ -20,7 +20,7 @@ self.__precacheManifest = [
     "url": "/MoveieBucketList/static/media/joshua-eckstein-1099605-unsplash.aa6e7820.jpg"
   },
   {
-    "revision": "9d1c28c75db28dbab134e652d6c8f2ca",
+    "revision": "41a92abd3184a72224f43612184dcb9a",
     "url": "/MoveieBucketList/index.html"
   }
 ];

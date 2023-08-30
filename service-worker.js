@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/MoveieBucketList/precache-manifest.1114719b891ed6c019a635a8454cb37a.js"
+  "/MoveieBucketList/precache-manifest.aa3cc6a0e45af641d9f0627ac6a41f0e.js"
 );
 
 workbox.clientsClaim();
